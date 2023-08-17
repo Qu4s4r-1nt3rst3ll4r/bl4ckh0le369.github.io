@@ -1,15 +1,15 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^(.*)$ $1.php
-    #RewriteRule ^([a-z]+)/?$ $1.php [NC]
-    
-    
+    # Esto quita el index.html
+    RewriteCond $1 !^(index\.html|css|js|images|robots.txt)
+    RewriteRule ^(.*)$ /index.html/$1 [L]
+
+
+
+    # Esto quita las extensiones
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.html -f
     RewriteRule ^(.*)$ $1.html
-    #RewriteRule ^([a-z]+)/?$ $1.html [NC]
-    
-    </IfModule>
+    RewriteRule ^([a-z]+)/?$ $1.html [NC]    
+ 
+</IfModule>
